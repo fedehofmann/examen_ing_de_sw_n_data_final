@@ -1,0 +1,29 @@
+# Virtual environments
+.venv
+.venv311
+venv/
+env/
+
+# Airflow runtime
+airflow_home/
+
+# Python artefacts
+__pycache__/
+*.pyc
+*.log
+
+# dbt artefacts
+dbt/target/
+
+# DuckDB warehouse (se genera en tiempo de ejecución)
+warehouse/medallion.duckdb
+
+# Data generada por el pipeline
+data/clean/
+data/quality/
+
+# Config local de profiles (credenciales específicas de usuario)
+profiles/.user.yml
+
+# macOS
+.DS_Store

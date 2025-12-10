@@ -9,15 +9,21 @@ models:
         tests:
           - not_null
           - unique
+
       - name: customer_id
         description: "Customer linked to the transaction."
         tests:
           - not_null
+
       - name: amount
         description: "Monetary amount of the transaction in the raw currency."
         tests:
           - not_null
           - non_negative
+          - non_zero
+          - max_value:
+              max_allowed: 1000000
+
       - name: status
         description: "Normalized status flag from the source system."
         tests:
@@ -27,10 +33,12 @@ models:
                 - completed
                 - pending
                 - failed
+
       - name: transaction_ts
         description: "Event timestamp of the transaction."
         tests:
           - not_null
+
       - name: transaction_date
         description: "Date component derived from transaction_ts for partitioning/grouping."
         tests:

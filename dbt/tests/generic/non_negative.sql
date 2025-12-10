@@ -1,10 +1,11 @@
 {% test non_negative(model, column_name) %}
+    -- Generic dbt test: fails if the column has negative or NULL values.
+    -- dbt marks the test as failed when this query returns one or more rows.
 
--- TODO: Implementar el test para verificar que los valores en la columna son no negativos y no nulos.
-
-select
-    {{ column_name }}
-from {{ model }}
-where {{ column_name }} < 0 or {{ column_name }} is null
-
+    SELECT
+        {{ column_name }}
+    FROM {{ model }}
+    WHERE
+        {{ column_name }} < 0
+        OR {{ column_name }} IS NULL
 {% endtest %}

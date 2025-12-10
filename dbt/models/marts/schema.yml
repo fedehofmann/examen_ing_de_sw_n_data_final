@@ -8,16 +8,22 @@ models:
         description: "Unique id per customer."
         tests:
           - not_null
+
       - name: transaction_count
         description: "Number of transactions per customer."
         tests:
           - not_null
           - non_negative
+          - non_zero
+
       - name: total_amount_completed
         description: "Sum of completed transaction amounts."
         tests:
           - not_null
           - non_negative
+          - max_value:
+              max_allowed: 1000000
+
       - name: total_amount_all
         description: "Sum of all transaction amounts."
         tests:
